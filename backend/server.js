@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const userRoute = require("./routes/userRoute");
+const imageRoutes = require("./routes/imageRoute");
 const { connect } = require("mongoose");
 
 //initialize the app
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 
 //routes
 app.use("/api/user", userRoute);
+app.use("/api/images", imageRoutes);
 
 // listen for requests
 app.listen(process.env.PORT, () => {

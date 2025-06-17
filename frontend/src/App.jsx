@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ImageGallery from "./components/ImageGallery";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -138,6 +139,11 @@ const Form = () => {
           </button>
         </div>
       </form>
+
+      <div>
+        <h1>Cloudinary Image Uploader</h1>
+        <ImageGallery />
+      </div>
     </div>
   );
 };
