@@ -18,6 +18,16 @@ const ImageGallery = () => {
       });
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5050/api/images/${id}`);
+      setImages(images.filter((user) => user._id !== id));
+    } catch (error) {
+      console.error("Failed to delete image:", error);
+      alert("Delete failed");
+    }
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       <h2>Uploaded Images</h2>
@@ -35,6 +45,20 @@ const ImageGallery = () => {
                 <strong>{user.name}</strong>
               </p>
               <p>{user.username}</p>
+              <button
+                onClick={() => handleDelete(user._id)}
+                style={{
+                  marginTop: "10px",
+                  background: "#e63946",
+                  color: "white",
+                  border: "none",
+                  padding: "6px 12px",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Delete
+              </button>
             </div>
           ))
         ) : (
