@@ -10,6 +10,8 @@ const app = express();
 
 // middleware
 app.use(cors());
+const orderRoutes = require("./routes/orderRoute");
+app.use("/api/orders", orderRoutes);
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);

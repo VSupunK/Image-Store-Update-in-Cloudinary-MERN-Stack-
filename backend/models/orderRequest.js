@@ -5,7 +5,7 @@ const imageSchema = new mongoose.Schema({
   publicId: String,
 });
 
-const orderRequestSchama = new mongoose.Schema({
+const orderRequestSchema = new mongoose.Schema({
   itemName: { type: String, required: true },
   projectName: { type: String, required: true },
   description: String,
@@ -22,7 +22,7 @@ const orderRequestSchama = new mongoose.Schema({
     enum: ["pending", "approved", "rejected"],
     default: "pending",
   },
-  createAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("OrderRequest", orderRequestSchema);
