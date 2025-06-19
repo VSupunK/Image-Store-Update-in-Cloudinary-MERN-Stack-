@@ -19,9 +19,10 @@ const orderRequestSchema = new mongoose.Schema({
   images: [imageSchema],
   status: {
     type: String,
-    enum: ["pending", "approved", "rejected"],
+    enum: ["pending", "confirmed", "approved", "rejected"],
     default: "pending",
   },
+  userId: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
 

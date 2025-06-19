@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const OrderForm = () => {
+const OrderForm = ({ userId }) => {
   const [formData, setFormData] = useState({
     itemName: "",
     projectName: "",
@@ -36,6 +36,10 @@ const OrderForm = () => {
     Object.entries(formData).forEach(([key, value]) => {
       data.append(key, value);
     });
+
+    data.append("userId", userId); // Replace with actual user auth/session later
+    console.log("Submitting with userId =", userId);
+
     selectedImages.forEach((img) => data.append("images", img));
 
     try {
