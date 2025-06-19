@@ -1,36 +1,3 @@
-// const express = require("express");
-// const router = express.Router();
-// const OrderRequest = require("../models/orderRequest");
-// const cloudinary = require("cloudinary").v2;
-
-// // Create a new order request
-// router.post("/", async (req, res) => {
-//   try {
-//     const {
-//       itemName,
-//       projectName,
-//       description,
-//       link,
-//       dueDate,
-//       priority,
-//       images,
-//     } = req.body;
-//     const newOrder = new OrderRequest({
-//       itemName,
-//       projectName,
-//       description,
-//       link,
-//       dueDate,
-//       priority,
-//       images: images.slice(0, 3), // store up to 3 images
-//     });
-//     await newOrder.save();
-//     res.status(201).json(newOrder);
-//   } catch (error) {
-//     res.status(500).json({ error: "Failed to create order request" });
-//   }
-// });
-
 const express = require("express");
 const router = express.Router();
 const OrderRequest = require("../models/orderRequest");
@@ -129,6 +96,17 @@ router.put("/:id", upload.array("images", 3), async (req, res) => {
     res.status(200).json(order);
   } catch (err) {
     res.status(500).json({ error: "Failed to update order" });
+  }
+});
+
+// Create Route to Fetch Single Order
+router.get("/single/:id", async (req, res) => {
+  try {
+    const order = await OrderRequest.findById(req.parms.id);
+    if (!order) return res.status(404).json({ error: "Order not found" });
+    res.status(200).json(order);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch order" });
   }
 });
 
