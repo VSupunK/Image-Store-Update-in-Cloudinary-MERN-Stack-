@@ -68,6 +68,8 @@ router.post("/", upload.array("images", 3), async (req, res) => {
       userId: req.body.userId,
     });
 
+    console.log("Received userId:", req.body.userId);
+
     await newOrder.save();
     res.status(201).json(newOrder);
   } catch (err) {
